@@ -43,7 +43,13 @@
                                 </form>
                             </td>
 --}}
-                            <td class="text-center">{{$task->status?'done':'didnt done'}}</td>
+                            <td class="text-center">
+                                <form action="{{route('user.tasks.status',compact('task'))}}" method="post">
+                                    @csrf
+                                    @method('put')
+                                    <button type="submit" class="text-red-600 cursor-pointer" {{$task->status?'':'disabled'}}>{{$task->status?'done':'didnt done'}}</button>
+                                </form>
+                            </td>
                             <td class="text-center">{{$task->deadline}}</td>
                             <td class="text-center">{{$task->definition_date}}</td>
                             <td class="text-center">{{$task->admin->name}}</td>
