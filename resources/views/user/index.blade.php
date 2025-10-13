@@ -1,13 +1,13 @@
-@extends('layout.app')
+@extends('layout.app2')
 @section('title')
-    tasks
+   user tasks
 @endsection
 @section('content')
     <div class="w-full h-[88%] bg-gray-200 flex items-center justify-center">
         <div class="w-[90%] h-5/6 bg-white rounded-xl pt-3 flex flex-col items-center">
             <div class="w-[90%] h-1/5 flex justify-between items-center border-b">
                 <a href="{{route('tasks.create')}}" class="px-10 py-3 rounded-xl font-light text-white bg-gray-800">add task +</a>
-                <h2 class="text-xl">tasks</h2>
+                <h2 class="text-xl">user tasks</h2>
             </div>
             <div class="w-[90%] h-3/5 flex flex-col justify-center">
                 <table class="w-full min-h-full border border-gray-400">
@@ -20,7 +20,6 @@
                         <td class="text-center">status</td>
                         <td class="text-center">deadline</td>
                         <td class="text-center">definition date</td>
-                        <td class="text-center">user</td>
                         <td class="text-center">admin</td>
                         <td class="text-center">description</td>
                         <td class="text-center">title</td>
@@ -47,7 +46,6 @@
                             <td class="text-center">{{$task->status?'done':'didnt done'}}</td>
                             <td class="text-center">{{$task->deadline}}</td>
                             <td class="text-center">{{$task->definition_date}}</td>
-                            <td class="text-center">{{$task->user->name}}</td>
                             <td class="text-center">{{$task->admin->name}}</td>
                             <td class="text-center">{{$task->description}}</td>
                             <td class="text-center">{{$task->title}}</td>
