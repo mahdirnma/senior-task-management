@@ -17,6 +17,8 @@ return new class extends Migration
             $table->text('description');
             $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('admin_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->date('definition_date');
+            $table->date('deadline');
             $table->boolean('status')->default(false);
             $table->boolean('is_active')->default(true);
             $table->timestamps();

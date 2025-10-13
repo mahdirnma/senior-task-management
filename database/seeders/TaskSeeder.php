@@ -18,12 +18,16 @@ class TaskSeeder extends Seeder
             'description' => 'lorem ipsum 1',
             'user_id' => 2,
             'admin_id' => 1,
+            'definition_date' => '2025-8-11',
+            'deadline' => '2025-9-11',
         ]);
         Task::create([
             'title' => 'title 2',
             'description' => 'lorem ipsum 2',
             'user_id' => 3,
             'admin_id' => 1,
+            'definition_date' => now(),
+            'deadline' => '2025-10-11',
         ]);
 
     }
