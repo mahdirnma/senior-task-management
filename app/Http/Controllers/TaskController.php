@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -13,7 +14,10 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+//        $admin=Auth::guard('admin')->user();
+        $admin=Auth::user();
+        $tasks=$admin->adminTasks()->paginate(2);
+        return view('admin.tasks.index',compact('tasks'));
     }
 
     /**
