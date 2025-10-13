@@ -30,6 +30,10 @@ class User extends Authenticatable
         return $this->hasMany(Task::class);
     }
 
+    public function adminTasks()
+    {
+        return $this->hasMany(Task::class,'admin_id');
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
