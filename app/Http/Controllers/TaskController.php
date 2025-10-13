@@ -16,8 +16,14 @@ class TaskController extends Controller
     public function index()
     {
 //        $admin=Auth::guard('admin')->user();
-        $admin=Auth::user();
-        $tasks=$admin->adminTasks()->paginate(2);
+
+/*        $admin=Auth::user();
+        $tasks=$admin->adminTasks()->paginate(2);*/
+
+        $adminId = Auth::id();
+        /*$tasks=Task::where('admin_id', $adminId)->where('is_active',1)->paginate(2);*/
+        $tasks=Task::where('admin_id', $adminId)->paginate(2);
+
         return view('admin.tasks.index',compact('tasks'));
     }
 
@@ -80,6 +86,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task->update(['is_active'=>0]);
+        return redirect()->route('tasks.index');
     }
 }
