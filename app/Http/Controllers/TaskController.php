@@ -6,6 +6,7 @@ use App\Models\Task;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\User;
+use App\Services\TaskService;
 use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
@@ -13,17 +14,16 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct(public TaskService $service){}
+
     public function index()
     {
 //        $admin=Auth::guard('admin')->user();
 
 /*        $admin=Auth::user();
         $tasks=$admin->adminTasks()->paginate(2);*/
-
-        $adminId = Auth::id();
         /*$tasks=Task::where('admin_id', $adminId)->where('is_active',1)->paginate(2);*/
-        $tasks=Task::where('admin_id', $adminId)->paginate(2);
-
+        $tasks=$this->service->getTasks();
         return view('admin.tasks.index',compact('tasks'));
     }
 
@@ -41,11 +41,7 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
-        $admin_id=Auth::id();
-        $task=Task::create([
-            ...$request->validated(),
-            'admin_id'=>$admin_id,
-        ]);
+        $task=$this->service->addTask($request);
         if($task){
             return redirect()->route('tasks.index');
         }
@@ -74,7 +70,7 @@ class TaskController extends Controller
      */
     public function update(UpdateTaskRequest $request, Task $task)
     {
-        $status=$task->update($request->validated());
+        $status=$this->service->updateTask($request,$task);
         if($status){
             return redirect()->route('tasks.index');
         }
@@ -86,7 +82,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        $task->update(['is_active'=>0]);
+        $this->service->deleteTask($task);
         return redirect()->route('tasks.index');
     }
 }
