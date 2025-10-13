@@ -13,10 +13,8 @@
                 <table class="w-full min-h-full border border-gray-400">
                     <thead>
                     <tr class="h-12 border border-gray-400 border-b-2 border-b-gray-400">
-{{--
                         <td class="text-center">delete</td>
                         <td class="text-center">update</td>
---}}
                         <td class="text-center">status</td>
                         <td class="text-center">deadline</td>
                         <td class="text-center">definition date</td>
@@ -29,21 +27,19 @@
                     <tbody>
                     @foreach($tasks as $task)
                         <tr>
-{{--
                             <td class="text-center">
-                                <form action="{{route('books.destroy',compact('book'))}}" method="post">
+                                <form action="{{route('tasks.destroy',compact('task'))}}" method="post">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="text-green-600 cursor-pointer">delete</button>
                                 </form>
                             </td>
                             <td class="text-center">
-                                <form action="{{route('books.edit',compact('book'))}}" method="get">
+                                <form action="{{route('tasks.edit',compact('task'))}}" method="get">
                                     @csrf
                                     <button type="submit" class="text-cyan-600 cursor-pointer">update</button>
                                 </form>
                             </td>
---}}
                             <td class="text-center">{{$task->status?'done':'didnt done'}}</td>
                             <td class="text-center">{{$task->deadline}}</td>
                             <td class="text-center">{{$task->definition_date}}</td>

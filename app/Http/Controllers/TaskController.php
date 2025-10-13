@@ -59,7 +59,8 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        $users=User::where('role','user')->where('is_active',1)->get();
+        return view('admin.tasks.edit',compact('task','users'));
     }
 
     /**
@@ -67,7 +68,11 @@ class TaskController extends Controller
      */
     public function update(UpdateTaskRequest $request, Task $task)
     {
-        //
+        $status=$task->update($request->validated());
+        if($status){
+            return redirect()->route('tasks.index');
+        }
+        return redirect()->route('tasks.edit');
     }
 
     /**
