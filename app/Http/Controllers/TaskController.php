@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
@@ -25,7 +26,8 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        $users=User::where('role','user')->where('is_active',1)->get();
+        return view('admin.tasks.create',compact('users'));
     }
 
     /**
@@ -33,7 +35,15 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
-        //
+        $admin_id=Auth::id();
+        $task=Task::create([
+            ...$request->validated(),
+            'admin_id'=>$admin_id,
+        ]);
+        if($task){
+            return redirect()->route('tasks.index');
+        }
+        return redirect()->route('tasks.create');
     }
 
     /**
