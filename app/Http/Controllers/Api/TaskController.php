@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreTaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
 use App\Services\TaskService;
 use Illuminate\Http\Request;
@@ -20,9 +22,13 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTaskRequest $request)
     {
-        //
+        $task=$this->service->addTask($request);
+        if($task){
+            return response()->json($task,201);
+        }
+        return response()->json(['error'=>'Task not created'],500);
     }
 
     /**
@@ -36,9 +42,13 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Task $task)
+    public function update(UpdateTaskRequest $request, Task $task)
     {
-        //
+        $status=$this->service->updateTask($request,$task);
+        if($status){
+            return response()->json($task,200);
+        }
+        return response()->json(['error'=>'Task not updated'],500);
     }
 
     /**
@@ -46,6 +56,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $this->service->deleteTask($task);
+        return response()->json('task deleted successfully',204);
     }
 }
