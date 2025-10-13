@@ -4,16 +4,17 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Task;
+use App\Services\TaskService;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct(public TaskService $service){}
+
     public function index()
     {
-        //
+        $tasks=$this->service->getTasks();
+        return response()->json($tasks,200);
     }
 
     /**
