@@ -49,7 +49,7 @@ class TaskController extends Controller
     {
         $status=$this->service->updateTask($request,$task);
         if($status){
-            return response()->json($task,200);
+            return response()->json(new TaskResource($task),200);
         }
         return response()->json(['error'=>'Task not updated'],500);
     }
