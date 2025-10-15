@@ -20,9 +20,10 @@ class TaskController extends Controller
     {
 //        $admin=Auth::guard('admin')->user();
 
-/*        $admin=Auth::user();
-        $tasks=$admin->adminTasks()->paginate(2);*/
-        /*$tasks=Task::where('admin_id', $adminId)->where('is_active',1)->paginate(2);*/
+        $admin=Auth::user();
+        $tasks=$admin->adminTasks()->paginate(5);
+/*        $adminId = Auth::id();
+        $tasks=Task::where('admin_id', $adminId)->where('is_active',1)->paginate(2);*/
         $tasks=$this->service->getTasks();
         return view('admin.tasks.index',compact('tasks'));
     }

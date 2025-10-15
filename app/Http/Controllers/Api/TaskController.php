@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use App\Http\Resources\TaskResource;
+use App\Http\Resources\TaskResourceCollection;
 use App\Models\Task;
 use App\Services\TaskService;
 use Illuminate\Http\Request;
@@ -16,7 +18,7 @@ class TaskController extends Controller
     public function index()
     {
         $tasks=$this->service->getTasks();
-        return response()->json($tasks,200);
+        return response()->json(TaskResource::collection($tasks),200);
     }
 
     /**
