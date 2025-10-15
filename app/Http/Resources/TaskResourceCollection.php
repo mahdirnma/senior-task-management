@@ -25,6 +25,12 @@ class TaskResourceCollection extends ResourceCollection
                 'from'=>$this->firstItem(),
                 'to'=>$this->lastItem(),
             ],
+            'links'=>[
+                'first'=>$this->url(1),
+                'last'=>$this->url($this->lastPage()),
+                'next'=>$this->currentPage()==$this->lastPage()?null:$this->url($this->currentPage()+1),
+                'prev'=>$this->currentPage()==1?null:$this->url($this->currentPage()-1),
+            ]
         ];
     }
 }
