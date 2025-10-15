@@ -9,7 +9,7 @@ Route::prefix('')->as('api.')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::apiResource('tasks', TaskController::class);
         Route::get('/users/tasks', [UserTaskController::class, 'getUserTasks'])->name('user.tasks');
+        Route::put('/users/tasks/{task}/status', [UserTaskController::class, 'changeTaskStatus'])->name('user.tasks.status');
     });
     Route::post('/auth', LoginController::class);
-//    Route::put('/users/tasks/{task}/status', [UserTaskController::class, 'taskStatus'])->name('user.tasks.status');
 });
