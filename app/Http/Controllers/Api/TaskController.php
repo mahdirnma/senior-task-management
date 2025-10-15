@@ -29,7 +29,7 @@ class TaskController extends Controller
     {
         $task=$this->service->addTask($request);
         if($task){
-            return response()->json(new TaskResource($task),201);
+            return response()->json($task,201);
         }
         return response()->json(['error'=>'Task not created'],500);
     }
@@ -39,7 +39,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        //
+        return response()->json($this->service->showTask($task),200);
     }
 
     /**

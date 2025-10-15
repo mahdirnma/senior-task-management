@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Resources\TaskResource;
 use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,9 +22,13 @@ class TaskService
             ...$request->validated(),
             'admin_id'=>$admin_id,
         ]);
-        return $task;
+        return new TaskResource($task);
     }
 
+    public function showTask($task)
+    {
+        return new TaskResource($task);
+    }
     public function updateTask($request, $task)
     {
         $status=$task->update($request->validated());
