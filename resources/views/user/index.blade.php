@@ -47,7 +47,7 @@
                                 <form action="{{route('user.tasks.status',compact('task'))}}" method="post">
                                     @csrf
                                     @method('put')
-                                    <button type="submit" class="text-red-600 cursor-pointer" {{$task->status?'':'disabled'}}>{{$task->status?'done':'didnt done'}}</button>
+                                    <button type="submit" class="text-red-600 cursor-pointer" {{$task->status==0?'':'disabled'}}>{{$task->status?'done':'didnt done'}}</button>
                                 </form>
                             </td>
                             <td class="text-center">{{$task->deadline}}</td>

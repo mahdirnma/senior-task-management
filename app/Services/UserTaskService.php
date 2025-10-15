@@ -13,4 +13,9 @@ class UserTaskService
         $tasks=$user->tasks()->paginate(2);
         return $tasks;
     }
+
+    public function changeStatus($task)
+    {
+        $task->update(['status'=>1]);
+    }
 }

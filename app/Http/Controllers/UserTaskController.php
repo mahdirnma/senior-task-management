@@ -18,7 +18,7 @@ class UserTaskController extends Controller
 
     public function taskStatus(Task $task)
     {
-        $status=$task->update(['status'=>1]);
+        $this->service->changeStatus($task);
         return redirect()->route('user.tasks');
     }
 
