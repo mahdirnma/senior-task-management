@@ -18,7 +18,6 @@ class TaskController extends Controller
     public function index()
     {
         $tasks=$this->service->getTasks();
-//        return response()->json(TaskResource::collection($tasks),200);
         return response()->json(new TaskResourceCollection($tasks),200);
     }
 

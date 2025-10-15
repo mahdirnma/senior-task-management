@@ -1,0 +1,525 @@
+{
+	"info": {
+		"_postman_id": "88ee6fb3-189e-4b43-867d-2db95a6669a3",
+		"name": "task management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28547413"
+	},
+	"item": [
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "All tasks",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "5|RZevgj5Teq8StmbGh5xmSDjiLfdJ21vAxJuM3hlvaf45ea53",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "mahdi@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base}}/api/tasks?page=5",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|enXAkaFcnV3itqNBvYiUetHcazxvUxABqWeuJvbP58fbc0ba",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "title 9",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "lorem 9",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "definition_date",
+									"value": "2025-08-02",
+									"type": "text"
+								},
+								{
+									"key": "deadline",
+									"value": "2025-08-22",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base}}/api/tasks",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|enXAkaFcnV3itqNBvYiUetHcazxvUxABqWeuJvbP58fbc0ba",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "title 10",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "lorem 10",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "definition_date",
+									"value": "2025-08-30",
+									"type": "text"
+								},
+								{
+									"key": "deadline",
+									"value": "2025-10-22",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "put",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base}}/api/tasks/9",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show task",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|enXAkaFcnV3itqNBvYiUetHcazxvUxABqWeuJvbP58fbc0ba",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "title 7",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "lorem 7",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "definition_date",
+									"value": "2025-08-30",
+									"type": "text"
+								},
+								{
+									"key": "deadline",
+									"value": "2025-10-22",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "put",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base}}/api/tasks/9",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|enXAkaFcnV3itqNBvYiUetHcazxvUxABqWeuJvbP58fbc0ba",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "title 7",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "lorem 7",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "definition_date",
+									"value": "2025-08-30",
+									"type": "text"
+								},
+								{
+									"key": "deadline",
+									"value": "2025-10-22",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "put",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base}}/api/tasks/9",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "All tasks",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6|iiy4PY87rSOr8yK8gFIqCtXT6A93g2XuMS3f0BG272928f81",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "title 8",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "lorem 8",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "definition_date",
+									"value": "2025-08-02",
+									"type": "text"
+								},
+								{
+									"key": "deadline",
+									"value": "2025-08-22",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base}}/api/users/tasks?page=3",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change task status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "2|tBi4b0YghYx9qB8hMJLB6MYpa9IuoVC6NI1xI8Addfbd6b63",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "title 8",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "description",
+									"value": "lorem 8",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "user_id",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "definition_date",
+									"value": "2025-08-02",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "deadline",
+									"value": "2025-08-22",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "_method",
+									"value": "put",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base}}/api/users/tasks/6/status",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"tasks",
+								"6",
+								"status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "ali@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base}}/api/auth",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
