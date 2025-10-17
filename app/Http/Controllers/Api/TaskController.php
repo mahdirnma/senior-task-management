@@ -39,7 +39,11 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        return response()->json($this->service->showTask($task),200);
+        $newTask=$this->service->showTask($task);
+        $actionResult=$task?
+            (new ApiResponseBuilder())->message('task showed successfully'):
+            (new ApiResponseBuilder())->message('task cannot be found');
+        return $actionResult->data(new TaskResource($task))->response();
     }
 
     /**

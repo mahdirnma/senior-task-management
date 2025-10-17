@@ -27,7 +27,7 @@ class TaskService
 
     public function showTask($task)
     {
-        return new TaskResource($task);
+        return $task;
     }
     public function updateTask($request, $task)
     {
