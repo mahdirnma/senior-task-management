@@ -30,9 +30,8 @@ class TaskRepository implements TaskRepositoryInterface
 
     public function update($id, array $data): ?Task
     {
-        $task=$this->task->find($id);
-        $status=$task?$task->update($data):null;
-        return $status;
+        $status=$id->update($data);
+        return $id;
     }
 
     public function delete($id): bool

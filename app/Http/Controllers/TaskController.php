@@ -69,7 +69,7 @@ class TaskController extends Controller
      */
     public function update(Task $task,UpdateTaskRequest $request)
     {
-        $status=$this->repository->update($request->validated(), (array)$task);
+        $status=$this->repository->update($task,$request->validated());
         if($status){
             return redirect()->route('tasks.index');
         }
