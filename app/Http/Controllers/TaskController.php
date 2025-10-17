@@ -6,6 +6,7 @@ use App\Models\Task;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\User;
+use App\Repository\TaskRepository;
 use App\Services\TaskService;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,13 +15,14 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function __construct(public TaskService $service){}
+//    public function __construct(public TaskService $service){}
+    public function __construct(public TaskRepository $repository){}
 
     public function index()
     {
 //        $admin=Auth::guard('admin')->user();
 
-        $tasks=$this->service->getTasks();
+        $tasks=$this->repository->all();
         return view('admin.tasks.index',compact('tasks'));
     }
 
@@ -38,7 +40,7 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
-        $task=$this->service->addTask($request);
+        $task=$this->repository->add($request->validated());
         if($task){
             return redirect()->route('tasks.index');
         }
@@ -65,9 +67,9 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTaskRequest $request, Task $task)
+    public function update(Task $task,UpdateTaskRequest $request)
     {
-        $status=$this->service->updateTask($request,$task);
+        $status=$this->repository->update($request->validated(), (array)$task);
         if($status){
             return redirect()->route('tasks.index');
         }
@@ -79,7 +81,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        $this->service->deleteTask($task);
+        $this->repository->delete($task);
         return redirect()->route('tasks.index');
     }
 }
