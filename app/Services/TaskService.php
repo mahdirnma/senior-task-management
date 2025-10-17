@@ -35,6 +35,7 @@ class TaskService
         return $status;
     }
     public function deleteTask($task){
-        $task->update(['is_active'=>0]);
+        $status=$task->update(['is_active'=>0]);
+        return $status;
     }
 }

@@ -63,7 +63,10 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        $this->service->deleteTask($task);
-        return response()->json('task deleted successfully',204);
+        $status=$this->service->deleteTask($task);
+        $actionResult=$status?
+            (new ApiResponseBuilder())->message('task deleted successfully'):
+            (new ApiResponseBuilder())->message('task cannot be deleted');
+        return $actionResult->response();
     }
 }
