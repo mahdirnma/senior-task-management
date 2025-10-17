@@ -22,7 +22,7 @@ class TaskService
             ...$request->validated(),
             'admin_id'=>$admin_id,
         ]);
-        return new TaskResource($task);
+        return $task;
     }
 
     public function showTask($task)

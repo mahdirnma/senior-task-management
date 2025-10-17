@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateTaskRequest;
 use App\Http\Resources\TaskResource;
 use App\Http\Resources\TaskResourceCollection;
 use App\Models\Task;
+use App\Services\ApiResponseBuilder;
 use App\Services\TaskService;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ class TaskController extends Controller
     public function index()
     {
         $tasks=$this->service->getTasks();
-        return response()->json(new TaskResourceCollection($tasks),200);
+        return (new ApiResponseBuilder())->data(new TaskResourceCollection($tasks))->response();
     }
 
     /**
@@ -27,10 +28,10 @@ class TaskController extends Controller
     public function store(StoreTaskRequest $request)
     {
         $task=$this->service->addTask($request);
-        if($task){
-            return response()->json($task,201);
-        }
-        return response()->json(['error'=>'Task not created'],500);
+        $actionResult=$task?
+            (new ApiResponseBuilder())->message('task created successfully'):
+            (new ApiResponseBuilder())->message('task cannot be created');
+        return $actionResult->data(new TaskResource($task))->response();
     }
 
     /**
