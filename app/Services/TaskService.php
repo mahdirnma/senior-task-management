@@ -10,8 +10,8 @@ class TaskService
 {
     public function getTasks()
     {
-        $adminId = Auth::id();
-        $tasks=Task::where('admin_id', $adminId)->paginate(2);
+        $admin = Auth::user();
+        $tasks=$admin->adminTasks();
         return $tasks;
     }
 
