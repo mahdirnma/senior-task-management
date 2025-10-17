@@ -36,8 +36,7 @@ class TaskRepository implements TaskRepositoryInterface
 
     public function delete($id): bool
     {
-        $task=$this->task->find($id);
-        $status=$task?$task->update(['is_active'=>0]):null;
+        $status=$id?$id->update(['is_active'=>0]):null;
         return $status;
 
     }
