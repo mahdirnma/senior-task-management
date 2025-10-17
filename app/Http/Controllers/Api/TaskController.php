@@ -52,10 +52,10 @@ class TaskController extends Controller
     public function update(UpdateTaskRequest $request, Task $task)
     {
         $status=$this->service->updateTask($request,$task);
-        if($status){
-            return response()->json(new TaskResource($task),200);
-        }
-        return response()->json(['error'=>'Task not updated'],500);
+        $actionResult=$status?
+            (new ApiResponseBuilder())->message('task updated successfully'):
+            (new ApiResponseBuilder())->message('task cannot be updated');
+        return $actionResult->data(new TaskResource($task))->response();
     }
 
     /**
