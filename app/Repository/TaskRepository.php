@@ -18,6 +18,10 @@ class TaskRepository implements TaskRepositoryInterface
         return $tasks;
     }
 
+    public function find($id): ?Task
+    {
+        return $id;
+    }
     public function add(array $data): Task
     {
         $admin_id=Auth::id();
@@ -38,6 +42,5 @@ class TaskRepository implements TaskRepositoryInterface
     {
         $status=$id?$id->update(['is_active'=>0]):null;
         return $status;
-
     }
 }
